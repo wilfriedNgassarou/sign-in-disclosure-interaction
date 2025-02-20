@@ -2,18 +2,20 @@ import { motion } from "motion/react"
 import { useState } from "react"
 import { GoogleSVG } from "./components/google-svg";
 import { AppleSVG } from "./components/apple-svg";
+import { Credits } from "./components/credits";
 
 function App() {
   const [state, setState] = useState<'opened' | 'closed'>('closed');
 
   return (
     <section className="w-full h-dvh flex justify-center items-center">
+      <Credits />
       {state == 'closed' && (
         <motion.button 
           key="button"
           layoutId="wrapper"
           onClick={() => setState('opened')}
-          className="h-12 w-48 flex justify-center relative items-center gap-1 bg-gray-200"
+          className="h-12 w-48 flex justify-center relative items-center gap-1 bg-gray-200 overflow-hidden"
           style={{ borderRadius: 24 }}
         >
           <motion.span 
@@ -21,7 +23,8 @@ function App() {
           >
             Sign In
           </motion.span>
-          <svg
+          <motion.svg
+            layout="position" 
             width="20"
             height="20"
             fill="none"
@@ -32,7 +35,7 @@ function App() {
             viewBox="0 0 24 24"
           >
             <path d="M5 12h14M12 5l7 7-7 7" />
-          </svg>
+          </motion.svg>
         </motion.button>
       )}
       {state == 'opened' && (
